@@ -22,6 +22,7 @@ void KalmanFilter::Predict() {
   TODO:
     * predict the state
   */
+  std::cout << "YES!!!";
 }
 
 void KalmanFilter::Update(const VectorXd &z) {
