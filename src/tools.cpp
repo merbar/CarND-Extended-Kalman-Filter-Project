@@ -15,6 +15,17 @@ VectorXd Tools::CalculateRMSE(const vector<VectorXd> &estimations,
   TODO:
     * Calculate the RMSE here.
   */
+  VectorXd rmse(4);
+  rmse << 0,0,0,0;
+  int n = estimations.size();
+  for (int i=0; i<n; i++) {
+    VectorXd residual_error = estimations[i] - ground_truth[i];
+    residual_error = (residual_error.array()*residual_error.array());
+    rmse += residual_error;
+  }
+  rmse = rmse / n;
+  rmse = rmse.array().sqrt();
+  return rmse;
 }
 
 MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
@@ -33,7 +44,7 @@ MatrixXd Tools::CalculateJacobian(const VectorXd& x_state) {
   float c2 = sqrt(c1);
   float c3 = c1*c2;
   
-  if (fabs(c1) < 0.0001) {
+  if (fabs(c1) < 0.00001) {
     std::cout << "Error: CalculateJacobian() - division by zero" << std::endl;
     return Hj;
   }
