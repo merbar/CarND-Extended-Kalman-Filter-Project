@@ -95,7 +95,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       */
       ekf_.x_ << measurement_pack.raw_measurements_(0), measurement_pack.raw_measurements_(1), 0, 0;
     }
-    
     // initialize covariance matrices
     // initial state covariance
     ekf_.P_ << 1000, 0, 0, 0,
@@ -111,6 +110,7 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
    *  Prediction
    ****************************************************************************/
 
+  
   /**
    TODO:
      * Update the state transition matrix F according to the new elapsed time.

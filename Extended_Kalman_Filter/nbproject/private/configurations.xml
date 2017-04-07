@@ -334,7 +334,6 @@
         <in>Array</in>
         <in>Cholesky</in>
         <in>CholmodSupport</in>
-        <in>Core</in>
         <in>Dense</in>
         <in>Eigen</in>
         <in>Eigenvalues</in>
@@ -392,6 +391,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -462,6 +463,59 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}" ../data/sample-laser-radar-measurement-data-2.txt output.txt</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}" ../data/sample-laser-radar-measurement-data-2.txt output.txt</runcommand>
+        <rundir>../build</rundir>
+        <buildfirst>false</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+    <conf name="dataset_3" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH} ../data/ output.txt"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH} ../data/"${OUTPUT_PATH} ../data/ output.txt" output.txt"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH} ../data/sample-laser-radar-measurement-data-1.txt output.txt"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" </runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ../data/sample-laser-radar-measurement-data-1.txt output.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" ../data/obj_pose-laser-radar-synthetic-ukf-input.txt output.txt</runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}" ../data/obj_pose-laser-radar-synthetic-ukf-input.txt output.txt</runcommand>
         <rundir>../build</rundir>
         <buildfirst>false</buildfirst>
         <terminal-type>0</terminal-type>
