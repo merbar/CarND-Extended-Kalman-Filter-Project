@@ -56,11 +56,20 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   const float phi = atan2(py, px);
   // make sure we don't divide by zero
   if (rho < 0.00001) rho = 0.00001;
-  const float rho_dot = (px*vx + py*vy) / rho;
-  
+  const float rho_dot = (px*vx + py*vy) / rho;  
   VectorXd z_pred(3);
   z_pred << rho, phi, rho_dot;
   VectorXd y = z - z_pred;
+  
+  // SPECIAL CASE (from Udacity Kalman Filter Tracker Visualization Tool):
+  // When crossing -x/-y axis, phi flips signs, resulting in velocity predicted
+  // from Lidar to peak and throw the system off
+  // If phi flips signs, ignore measurement and count on other sensor(s) and 
+  // prediction to guide us through this area.
+  if (((z_pred[1]*z[1]) <= 0.0f) && fabs(z_pred[1]-z[1]) > M_PI) {
+    y << 0,0,0;
+  }
+  
   MatrixXd Ht = H_.transpose();
   MatrixXd S = H_ * P_ * Ht + R_;
   MatrixXd K = P_ * Ht * S.inverse();
