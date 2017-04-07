@@ -34,6 +34,10 @@ public:
 private:
   // check whether the tracking toolbox was initiallized or not (first measurement)
   bool is_initialized_;
+  float noise_px_;
+  float noise_py_;
+  float noise_vx_;
+  float noise_vy_;
 
   // previous timestamp
   long previous_timestamp_;

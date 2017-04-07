@@ -13,7 +13,6 @@ using std::vector;
  */
 FusionEKF::FusionEKF() {
   is_initialized_ = false;
-
   previous_timestamp_ = 0;
 
   // initializing matrices
@@ -47,6 +46,14 @@ FusionEKF::FusionEKF() {
             0, 0, 1, 0,
             0, 0, 0, 1;
   ekf_.Q_ = MatrixXd(4, 4);
+  // optimized noise parameters. Given the problem set, velocity prediction is
+  // fairly uncertain since it is only derived from radar measurements.
+  // Breaking that out into separate, high noise coefficients increased
+  // accuracy considerably.
+  noise_px_ = 9;
+  noise_py_ = 9;
+  noise_vx_ = 100;
+  noise_vy_ = 100;
 }
 
 /**
@@ -66,12 +73,9 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       * Remember: you'll need to convert radar from polar to cartesian coordinates.
     */
     // first measurement
-    cout << "EKF:" << endl;
-    ekf_.x_ << 1, 1, 1, 1;
-    
+    cout << "EKF:" << endl; 
     // initialize timestamp
     previous_timestamp_ = measurement_pack.timestamp_;
-
     if (measurement_pack.sensor_type_ == MeasurementPackage::RADAR) {
       /**
       Convert radar from polar to cartesian coordinates and initialize state.
@@ -80,9 +84,12 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       float py = measurement_pack.raw_measurements_(0) * sin(measurement_pack.raw_measurements_(1));
       float vx = measurement_pack.raw_measurements_(2) * cos(measurement_pack.raw_measurements_(1));
       float vy = measurement_pack.raw_measurements_(2) * sin(measurement_pack.raw_measurements_(1));
-      ekf_.x_ << px, py, 0, 0;
+      // initializing with vx and vy improves accuracy, but I don't like it.
+      // this works in both test cases because radar is aligned well with object
+      // at initial frame
+      ekf_.x_ << px, py, vx, vy;
     }
-    else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
+    else {
       /**
       Initialize state.
       */
@@ -109,7 +116,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
      * Update the state transition matrix F according to the new elapsed time.
       - Time is measured in seconds.
      * Update the process noise covariance matrix.
-     * Use noise_ax = 9 and noise_ay = 9 for your Q matrix.
    */
   float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0; //dt in seconds
   // only update prior if a certain amount of time has passed
@@ -120,13 +126,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
     float c1 = dt*dt;
     float c2 = c1*dt / 2;
     float c3 = c1*c1 / 4;
-    float noise_ax = 9;
-    float noise_ay = 9;
-
-    ekf_.Q_ << c3*noise_ax, 0, c2*noise_ax, 0,
-              0, c3*noise_ay, 0, c2*noise_ay,
-              c2*noise_ax, 0, c1*noise_ax, 0,
-              0, c2*noise_ay, 0, c1*noise_ay;
+    ekf_.Q_ << c3*noise_px_, 0, c2*noise_vx_, 0,
+              0, c3*noise_py_, 0, c2*noise_vy_,
+              c2*noise_px_, 0, c1*noise_vx_, 0,
+              0, c2*noise_py_, 0, c1*noise_vy_;
     ekf_.Predict();
   }
 

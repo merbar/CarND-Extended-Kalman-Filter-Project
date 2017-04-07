@@ -10,14 +10,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/kalman_filter.h</file>
             <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/FusionEKF.h</file>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/measurement_package.h</file>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/main.cpp</file>
             <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/FusionEKF.cpp</file>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/ground_truth_package.h</file>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/tools.h</file>
-            <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/tools.cpp</file>
             <file>file:/home/merbar/git/CarND-Extended-Kalman-Filter-Project/src/kalman_filter.cpp</file>
         </group>
     </open-files>
