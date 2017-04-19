@@ -1,5 +1,5 @@
-# Extended Kalman Filter Project Starter Code
-Self-Driving Car Engineer Nanodegree Program
+# Extended Kalman Filter Project
+## Self-Driving Car Engineer Nanodegree Program
 
 Implementation of an Extended Kalman Filter to fuse radar and lidar sensor inputs for object tracking. The goal was to beat a certain RMSE threshold set by Udacity.
 
