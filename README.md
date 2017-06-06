@@ -3,6 +3,9 @@
 
 Implementation of an Extended Kalman Filter to fuse radar and lidar sensor inputs for object tracking. The goal was to beat a certain RMSE threshold set by Udacity.
 
+This is part of a short series of projects exploring different Kalman filtering methods. The other is:
+* [Unscented Kalman Filter](https://github.com/merbar/CarND-Unscented-Kalman-Filter-Project)
+
 Plot of final result. Blue KF estimate is mostly covered up by ground truth... it does peek out a little in the lower left corner:
 ![final result](Docs/dataset1_plot.png)
 
