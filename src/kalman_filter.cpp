@@ -7,8 +7,8 @@ KalmanFilter::KalmanFilter() {}
 
 KalmanFilter::~KalmanFilter() {}
 
-void KalmanFilter::Init(VectorXd &x_in, MatrixXd &P_in, MatrixXd &F_in,
-                        MatrixXd &H_in, MatrixXd &R_in, MatrixXd &Q_in) {
+void KalmanFilter::Init(const VectorXd &x_in, const MatrixXd &P_in, const MatrixXd &F_in,
+                        const MatrixXd &H_in, const MatrixXd &R_in, const MatrixXd &Q_in) {
   x_ = x_in;
   P_ = P_in;
   F_ = F_in;
@@ -48,12 +48,12 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
   TODO:
     * update the state by using Extended Kalman Filter equations
   */
-  const float px = x_(0);
-  const float py = x_(1);
-  const float vx = x_(2);
-  const float vy = x_(3);
+  float px = x_(0);
+  float py = x_(1);
+  float vx = x_(2);
+  float vy = x_(3);
   float rho = sqrt(px*px + py*py);
-  const float phi = atan2(py, px);
+  float phi = atan2(py, px);
   // make sure we don't divide by zero
   if (rho < 0.00001) rho = 0.00001;
   const float rho_dot = (px*vx + py*vy) / rho;  

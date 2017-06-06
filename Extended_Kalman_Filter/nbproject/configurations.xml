@@ -82,6 +82,11 @@
           <buildCommand>make</buildCommand>
           <cleanCommand>make clobber</cleanCommand>
           <executablePath>../build/ExtendedKF</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../build</pElem>
+            </incDir>
+          </ccTool>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -90,25 +95,18 @@
       </makefileType>
       <item path="../src/FusionEKF.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
-          <incDir>
-            <pElem>../build</pElem>
-          </incDir>
         </ccTool>
       </item>
       <item path="../src/kalman_filter.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
-          <incDir>
-            <pElem>../build</pElem>
-          </incDir>
         </ccTool>
       </item>
-      <item path="../src/main.cpp" ex="false" tool="1" flavor2="4">
+      <item path="../src/main.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
       </item>
       <item path="../src/tools.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
-          <incDir>
-            <pElem>../build</pElem>
-          </incDir>
         </ccTool>
       </item>
     </conf>

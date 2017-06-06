@@ -334,6 +334,7 @@
         <in>Array</in>
         <in>Cholesky</in>
         <in>CholmodSupport</in>
+        <in>Core</in>
         <in>Dense</in>
         <in>Eigen</in>
         <in>Eigenvalues</in>

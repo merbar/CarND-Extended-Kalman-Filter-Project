@@ -80,10 +80,10 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
       /**
       Convert radar from polar to cartesian coordinates and initialize state.
       */
-      float px = measurement_pack.raw_measurements_(0) * cos(measurement_pack.raw_measurements_(1));
-      float py = measurement_pack.raw_measurements_(0) * sin(measurement_pack.raw_measurements_(1));
-      float vx = measurement_pack.raw_measurements_(2) * cos(measurement_pack.raw_measurements_(1));
-      float vy = measurement_pack.raw_measurements_(2) * sin(measurement_pack.raw_measurements_(1));
+      const float px = measurement_pack.raw_measurements_(0) * cos(measurement_pack.raw_measurements_(1));
+      const float py = measurement_pack.raw_measurements_(0) * sin(measurement_pack.raw_measurements_(1));
+      const float vx = measurement_pack.raw_measurements_(2) * cos(measurement_pack.raw_measurements_(1));
+      const float vy = measurement_pack.raw_measurements_(2) * sin(measurement_pack.raw_measurements_(1));
       // initializing with vx and vy improves accuracy, but I don't like it.
       // this works in both test cases because radar is aligned well with object
       // at initial frame
